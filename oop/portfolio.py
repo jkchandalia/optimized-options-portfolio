@@ -22,7 +22,7 @@ class Portfolio:
         return self._calculate_margin()
         
     def _calculate_strangle_margin(self, option_call, option_put):
-        return min(option_call.margin+100*option_put.mark,option_put.margin+100*option_call.mark )
+        return min(option_call.margin+100*option_put.mark,option_put.margin+100*option_call.mark)
 
     def _calculate_margin(self):
         margin = 0
@@ -88,7 +88,7 @@ class Portfolio:
         trade_instructions = " ".join(msg) 
         if not(msg):
             msg.append("No changes needed.")
-            
+
         return trade_instructions
 
     
