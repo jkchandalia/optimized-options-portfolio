@@ -15,7 +15,7 @@ class Option:
         
         validation = Option.get_market_data(params)
         if not(validation):
-            raise Exception
+            raise Exception('Parameters are not a valid option.')
         else:
             self.equity = equity
             self.option_type = option_type.upper()
