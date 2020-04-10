@@ -17,6 +17,10 @@ class Portfolio:
             self.options.remove(option)
         return self
 
+    @property
+    def margin(self):
+        return self._calculate_margin()
+        
     def _calculate_strangle_margin(self, option_call, option_put):
         return min(option_call.margin+100*option_put.mark,option_put.margin+100*option_call.mark )
 
@@ -44,10 +48,6 @@ class Portfolio:
         return int(round(margin,-2))
 
     @property
-    def margin(self):
-        return self._calculate_margin()
-
-    @property
     def liability(self):
         return self._calculate_liability()
 
@@ -72,9 +72,6 @@ class Portfolio:
                 calls += 1
             elif option.option_type == 'PUT':
                 puts += 1
-        msg.append(f'Number of calls is {calls}; number of puts is {puts}')
-        
-        for option in portfolio.options:
             date_delta = datetime.datetime.strptime(str(option.exp_date)  , '%Y-%m-%d') - datetime.datetime.now()
             days_to_expiry = date_delta.days
             if datetime.datetime.strptime(str(option.exp_date)  , '%Y-%m-%d') - datetime.datetime.now()<datetime.timedelta(days=7):
@@ -85,16 +82,12 @@ class Portfolio:
                 msg.append(f'For call option {option.symbol}, strike has been breached. In the money by {option.equity_price-option.strike}')
             if option.option_type=='PUT' and option.strike>(option.equity_price*0.98):
                 msg.append(f'For put option {option.symbol}, strike is within danger range. Time to roll.')
-            if option.equity=='$RUT.X' and option.option_type == 'PUT':
-                    if 100*option.mark/days_to_expiry < 20 and days_to_expiry<90:
-                        msg.append(f'The option {option.symbol} of value {option.mark} expiring {option.exp_date} has decayed and could be rolled.')
-            elif option.equity=='$RUT.X' and option.option_type == 'CALL':
-                    if 100*option.mark/days_to_expiry < 16 and days_to_expiry<90:
-                        msg.append(f'The option {option.symbol} of value {option.mark} expiring {option.exp_date} has decayed and could be rolled.')
 
+        msg.append(f'Number of calls is {calls}; number of puts is {puts}')
+            
         trade_instructions = " ".join(msg) 
         if not(msg):
             msg.append("No changes needed.")
-        print(' '.join(msg))
+        print(trade_instructions)
 
     
