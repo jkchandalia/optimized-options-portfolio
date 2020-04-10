@@ -64,7 +64,7 @@ class Portfolio:
     @property
     def trade_summary(portfolio):
         msg = []
-        msg.append(f'Net portfolio liability is {portfolio.liability}')
+        msg.append(f'Net portfolio liability is {portfolio.liability}.')
         calls = 0
         puts = 0
         for option in portfolio.options:
@@ -88,6 +88,7 @@ class Portfolio:
         trade_instructions = " ".join(msg) 
         if not(msg):
             msg.append("No changes needed.")
-        print(trade_instructions)
+            
+        return trade_instructions
 
     
