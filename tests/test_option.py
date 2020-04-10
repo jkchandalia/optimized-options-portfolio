@@ -12,6 +12,7 @@ class TestOptionInit(TestCase):
         with self.assertRaises(Exception):
             o = Option(EQUITY, OPTION_TYPE, STRIKE, '2020-06-18')
 
+
 class TestOption(TestCase):
     def setUp(self):
         self.option = Option(EQUITY, OPTION_TYPE, STRIKE, DATE)

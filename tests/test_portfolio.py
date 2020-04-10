@@ -1,17 +1,19 @@
 from unittest import TestCase
 
-from oop.portfolio import Portfolio
 from oop.option import Option
+from oop.portfolio import Portfolio
 
 EQUITY = 'TSLA'
 OPTION_TYPE = 'CALL'
 STRIKE = 700
 DATE = '2020-06-19'
 
+
 class TestPortfolioInit(TestCase):
     def test_init(self):
         with self.assertRaises(TypeError):
             p = Portfolio()
+
 
 class TestPortfolio(TestCase):
     def setUp(self):
