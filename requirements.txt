@@ -1,3 +1,1 @@
-datetime
-os
 requests
