@@ -1,4 +1,5 @@
 import datetime
+
 from collections import deque
 
 class Portfolio:

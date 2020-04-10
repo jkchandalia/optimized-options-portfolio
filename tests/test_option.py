@@ -7,6 +7,7 @@ OPTION_TYPE = 'CALL'
 STRIKE = 700
 DATE = '2020-06-19'
 
+
 class TestOptionInit(TestCase):
     def test_init(self):
         with self.assertRaises(Exception):
