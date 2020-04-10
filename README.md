@@ -1,0 +1,3 @@
+This is a simple package to help manage a portfolio of short options. Each user of this package must have her/his own TD Ameritrade API key (see https://developer.tdameritrade.com/content/getting-started to get this key) saved as the environment variable TD_AMERITRADE_API_KEY. 
+
+Each instance of the portfolio class can have multiple instances of the Option class associated with it. One can calculate the margin needed to support shorting this portfolio as well as the net liability. All data (mark, underlying equity price, all the greek variables associated with the option) can be refreshed with current market data from the TD Ameritrade API with the update_data method. 
