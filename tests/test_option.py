@@ -42,4 +42,4 @@ class TestOption(TestCase):
         self.assertEqual(self.option.margin,20000)
 
     def test_update_data(self):
-        pass
+        self.option.update_data()

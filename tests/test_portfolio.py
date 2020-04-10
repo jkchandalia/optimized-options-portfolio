@@ -28,13 +28,30 @@ class TestPortfolio(TestCase):
         self.assertEqual(len(self.portfolio.options), 2)
 
     def test_margin(self):
-        pass
+        self.portfolio.add_option(self.option, 1)
+        self.option.equity_price = 1000
+        self.option.mark = 50
+        self.assertEqual(self.portfolio.margin,40000)
+
+    def test_strangle_margin(self):
+        self.portfolio.add_option(self.option, 1)
+        self.option.equity_price = 1000
+        self.option.mark = 50
+        put_option = Option(EQUITY, 'PUT', 300, DATE)
+        put_option.equity_price = self.option.equity_price
+        put_option.mark = 50
+        self.portfolio.add_option(put_option, 1)
+        strangle_margin = 2 * min(self.option.margin+100*put_option.mark,put_option.margin+100*self.option.mark)
+        self.assertEqual(self.portfolio.margin,strangle_margin)
 
     def test_liability(self):
-        pass
+        self.portfolio.add_option(self.option, 1)
+        self.option.mark = 50
+        self.assertEqual(self.portfolio.liability, 5000)
 
     def test_update_data(self):
-        pass
+        self.portfolio.add_option(self.option, 1)
+        self.portfolio.update_data()
 
     def test_trade_summary(self):
-        pass
+        self.assertIsInstance(self.portfolio.trade_summary, str)
