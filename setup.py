@@ -1,4 +1,4 @@
-from setuptools import setup
+from setuptools import setup, find_packages
 
 with open("README.md", "r") as fh:
     long_description = fh.read()
@@ -11,7 +11,7 @@ setup(name='optimized-options-portfolio',
       author_email='jkchandalia@gmail.com',
       description=long_description,
       url='http://github.com/jkchandalia/optimized-options-portfolio',
-      packages=setuptools.find_packages(),
+      packages=find_packages(),
       install_requires=REQUIRES,
       summary='Short options portfolio tools',
       license='MIT',
